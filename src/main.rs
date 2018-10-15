@@ -77,8 +77,8 @@ fn to_text_box(lines: Vec<&str>, width: usize) -> String {
     } // If there is one line
     else if lines.len() == 1 {
         // Top and bottom borders
-        let top_text_box = format!(" {:_^1$}", "", lines[0].len() + 1);
-        let bottom_text_box = format!(" {:-^1$}", "", lines[0].len() + 1);
+        let top_text_box = format!(" {:_^1$} ", "", lines[0].len() + 2);
+        let bottom_text_box = format!(" {:-^1$} ", "", lines[0].len() + 2);
         res = format!("{top}\n< {line} >\n{bottom}", top = top_text_box, line = lines[0], bottom = bottom_text_box);
     } // If there is 2 or more lines
     else if lines.len() >= 2 {
