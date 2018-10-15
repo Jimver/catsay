@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Jimver/catsay.svg?branch=master)](https://travis-ci.org/Jimver/catsay)
 
-This is a useless cli tool of a cat echoing the standard input.
+This is a useless cli tool of a cat echoing what you say.
 
 ## Operation
 You can either provide your text: 
@@ -33,3 +33,7 @@ To build this project you need the Rust language installed:
 And to run it:
 
 `cargo run hello there`
+
+## TODOs
+- Add tests
+- Proper help message
