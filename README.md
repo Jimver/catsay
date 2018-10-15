@@ -1,5 +1,7 @@
 # catsay
 
+[![Build Status](https://travis-ci.org/Jimver/catsay.svg?branch=master)](https://travis-ci.org/Jimver/catsay)
+
 This is a useless cli tool of a cat echoing the standard input.
 
 ## Operation
