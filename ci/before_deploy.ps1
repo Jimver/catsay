@@ -18,7 +18,7 @@ Copy-Item "$EXE" "$RELEASE_NAME.exe"
 
 7z a "$ZIP" *
 
-Push-AppveyorArtifact "$RELEASE_NAME"
+Push-AppveyorArtifact "$RELEASE_NAME.exe"
 
 Remove-Item *.* -Force
 Set-Location ..
