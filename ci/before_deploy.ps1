@@ -14,7 +14,7 @@ $ZIP = "$RELEASE_NAME.zip"
 
 $EXE = "$SRC_DIR\target\$($Env:TARGET)\release\catsay.exe"
 
-Copy-Item "$EXE" ".\$RELEASE_NAME"
+Copy-Item "$EXE" "$RELEASE_NAME"
 
 7z a "$ZIP" *
 
