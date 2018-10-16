@@ -21,6 +21,10 @@ main() {
 
     cross rustc --bin catsay --target $TARGET --release -- -C lto
 
+    ls target/
+    ls target/$TARGET/
+    ls target/$TARGET/release/
+
     cp target/$TARGET/release/catsay $stage/
 
     cd $stage
