@@ -8,15 +8,17 @@ Set-Location $ENV:Temp
 New-Item -Type Directory -Name $STAGE
 Set-Location $STAGE
 
-$ZIP = "$SRC_DIR\$($Env:CRATE_NAME)-$($Env:APPVEYOR_REPO_TAG_NAME)-$($Env:TARGET).zip"
+$RELEASE_NAME ="$SRC_DIR\$($Env:CRATE_NAME)-$($Env:APPVEYOR_REPO_TAG_NAME)-$($Env:TARGET)"
+
+$ZIP = "$RELEASE_NAME.zip"
 
 $EXE = "$SRC_DIR\target\$($Env:TARGET)\release\catsay.exe"
 
-Copy-Item "$EXE" '.\'
+Copy-Item "$EXE" ".\$RELEASE_NAME"
 
 7z a "$ZIP" *
 
-Push-AppveyorArtifact "$EXE"
+Push-AppveyorArtifact "$RELEASE_NAME"
 
 Remove-Item *.* -Force
 Set-Location ..
