@@ -21,7 +21,7 @@ main() {
 
     cross rustc --bin catsay --target $TARGET --release -- -C lto
 
-    if [ $TARGET == 'x86_64-pc-windows-gnu' ]
+    if [ $TARGET = 'x86_64-pc-windows-gnu' ]
     then
         cp target/$TARGET/release/catsay.exe $stage/
     else
