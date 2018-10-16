@@ -51,7 +51,8 @@ deploy:
   provider: releases
   api_key:
     secure: OkrYD4oafM2yYTRtevipngu42yb5CrfMI7/bKYO6XVdMgvywOzVVhSpT4c30H8rEmYlcZOaXS6HCUU4PwEmnLhAq0xYGfBnjQSDZ89lt8UezAIqSRLGuvrr94bMmFpnoH4hzEsu6+bzQqwN4bQncm4I9zXnHHOrcy+h7Z8H/xWR3gWk9K2FOMiblGQ+jXY6jjHtVceks6RP1Ke6K73vPsF/TtcuOFB/VY0O4gwIZuDZuBvwqR34b+IeXv0aVfnqPndk6nNjg+zZUTDHwF4pHMBJVGUEgzSlE9KumSebBi7f8rEPUl9X4y5NChKbeqNF9cFVb3qwTHa8+ghrvUL0Ylm2toOiwwMLV7slE3XxXOzWQ1Bnn7cWLiuBTSjVxCcveRHcWH0P5ZiNamvXXF5+VTrhj0g1CIu09geGPyFCYPaSYa/OGNGMntlBTpFAgW+mLf4HnN/Oaf/g2yDv91SsC4eQk16Mm7dCNNYStQT/CkiJZ21yMJjkgqnmrnvz/jgEVfUGlsugqhX7jZX40rZMQvyYaP+mqLlyZnO7SEocr3FKZZsEcwFDf4d9anPahBNQUOzUVzuHaqnY3v6bZQ7SdDcx7HoA+wnvs/fvaScF4ZiBzgzd35xU50f6gdD3z0FlCu5erEgOp3cdy6+rkN55CxkxERlIOz2zGjW+NkI1oYZM=
-  file: "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.*"
+  file_glob: true
+  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
   skip_cleanup: true
   on:
     tags: true
