@@ -21,11 +21,13 @@ main() {
 
     cross rustc --bin catsay --target $TARGET --release -- -C lto
 
-    ls target/
-    ls target/$TARGET/
-    ls target/$TARGET/release/
+    if [ $TARGET == 'x86_64-pc-windows-gnu' ]
+    then
+        cp target/$TARGET/release/catsay.exe $stage/
+    else
+        cp target/$TARGET/release/catsay $stage/
+    fi
 
-    cp target/$TARGET/release/catsay $stage/
 
     cd $stage
     tar czf $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz *
