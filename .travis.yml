@@ -4,64 +4,50 @@ rust:
 dist: trusty
 services: docker
 sudo: required
-
 env:
   global:
   - CRATE_NAME=catsay
-
 matrix:
   include:
-  # Linux
-    # ARM 64 bit
   - env: TARGET=aarch64-unknown-linux-gnu
-    # x86 32 bit
   - env: TARGET=i686-unknown-linux-gnu
-    # x86 64 bit
   - env: TARGET=x86_64-unknown-linux-gnu
-
-  # OSX
-  # 32 bit
   - env: TARGET=i686-apple-darwin
     os: osx
-  # 64 bit
   - env: TARGET=x86_64-apple-darwin
     os: osx
-
-  # Windows
-  # 64 bit
-  #- env: TARGET=x86_64-pc-windows-gnu
-
 before_install:
 - set -e
 - rustup self update
-
 install:
 - sh ci/install.sh
 - source ~/.cargo/env || true
-
 script:
 - bash ci/script.sh
-
 after_script: set +e
-
 before_deploy:
 - sh ci/before_deploy.sh
-
 deploy:
-  provider: releases
-  api_key:
-    secure: OkrYD4oafM2yYTRtevipngu42yb5CrfMI7/bKYO6XVdMgvywOzVVhSpT4c30H8rEmYlcZOaXS6HCUU4PwEmnLhAq0xYGfBnjQSDZ89lt8UezAIqSRLGuvrr94bMmFpnoH4hzEsu6+bzQqwN4bQncm4I9zXnHHOrcy+h7Z8H/xWR3gWk9K2FOMiblGQ+jXY6jjHtVceks6RP1Ke6K73vPsF/TtcuOFB/VY0O4gwIZuDZuBvwqR34b+IeXv0aVfnqPndk6nNjg+zZUTDHwF4pHMBJVGUEgzSlE9KumSebBi7f8rEPUl9X4y5NChKbeqNF9cFVb3qwTHa8+ghrvUL0Ylm2toOiwwMLV7slE3XxXOzWQ1Bnn7cWLiuBTSjVxCcveRHcWH0P5ZiNamvXXF5+VTrhj0g1CIu09geGPyFCYPaSYa/OGNGMntlBTpFAgW+mLf4HnN/Oaf/g2yDv91SsC4eQk16Mm7dCNNYStQT/CkiJZ21yMJjkgqnmrnvz/jgEVfUGlsugqhX7jZX40rZMQvyYaP+mqLlyZnO7SEocr3FKZZsEcwFDf4d9anPahBNQUOzUVzuHaqnY3v6bZQ7SdDcx7HoA+wnvs/fvaScF4ZiBzgzd35xU50f6gdD3z0FlCu5erEgOp3cdy6+rkN55CxkxERlIOz2zGjW+NkI1oYZM=
-  file_glob: true
-  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: releases
+    api_key:
+      secure: OkrYD4oafM2yYTRtevipngu42yb5CrfMI7/bKYO6XVdMgvywOzVVhSpT4c30H8rEmYlcZOaXS6HCUU4PwEmnLhAq0xYGfBnjQSDZ89lt8UezAIqSRLGuvrr94bMmFpnoH4hzEsu6+bzQqwN4bQncm4I9zXnHHOrcy+h7Z8H/xWR3gWk9K2FOMiblGQ+jXY6jjHtVceks6RP1Ke6K73vPsF/TtcuOFB/VY0O4gwIZuDZuBvwqR34b+IeXv0aVfnqPndk6nNjg+zZUTDHwF4pHMBJVGUEgzSlE9KumSebBi7f8rEPUl9X4y5NChKbeqNF9cFVb3qwTHa8+ghrvUL0Ylm2toOiwwMLV7slE3XxXOzWQ1Bnn7cWLiuBTSjVxCcveRHcWH0P5ZiNamvXXF5+VTrhj0g1CIu09geGPyFCYPaSYa/OGNGMntlBTpFAgW+mLf4HnN/Oaf/g2yDv91SsC4eQk16Mm7dCNNYStQT/CkiJZ21yMJjkgqnmrnvz/jgEVfUGlsugqhX7jZX40rZMQvyYaP+mqLlyZnO7SEocr3FKZZsEcwFDf4d9anPahBNQUOzUVzuHaqnY3v6bZQ7SdDcx7HoA+wnvs/fvaScF4ZiBzgzd35xU50f6gdD3z0FlCu5erEgOp3cdy6+rkN55CxkxERlIOz2zGjW+NkI1oYZM=
+    file_glob: true
+    file: "$CRATE_NAME-$TRAVIS_TAG-$TARGET.*"
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: launchpad
+    slug: "~jimver/catsay"
+    oauth_token:
+      secure: gU633oD/vvLOpGj7NMs/mHc/k29bzl68HnPJZLIQp24vzCAqCzzqMWUc6kGSToIQADF+yyBK/M3mSR5RzZQQV9Z2/z+/CpmPb4Ys842jRzIZPYNFYOKmpwpXFT+XeTv7CdBLRPTZ/05tF6QAH1TUzY/fRrsHaODY3FfefrA8PtVUSupMk057Ui1FyG+hdGcuRg6mWLUArfA15Vvp1d5KBilbgbRBebEUNeyetdHMs89mglAUP4QjLefMNUIgfPyMTSiI+Bml3Z67yDbYaoJ0HJwvrXyrFtEGRl3de69A7mEvTrRln2J/bJcIcJwNFoZwIcRstqaZcsVqxK+9sypcqIFLLIjnSsf2Lmf8bLvRh+9rHLZTy04D3Ezx890bOJFM+XaKqfpb257pZVMBH+bt3UkAWfl7XTDkAZzFGh8JM0zMLumPkITdxTmLRAK2r7Nc817NG4NHZBqYLAk3tIT9zz1akjq4sVGt12LrMQw/WBssm3s2eoTnR26BLv6947UjSOG68z6XnVP9QLQR8Gq4Pl5n4YxpL9iN3UinbtojoDwE5/G39cgU8UWy4p/MbjQA8v1uYID7l6ptG4pnkRc0jEx9Famwa6SiUxOlqi4AfE7y68feEx1r6XgiBennxBiHfcfciv32aqyRIQMlln2g00o+i2m5Hg+Vwmhf2SQiRno=
+    oauth_token_secret:
+      secure: PrioPa33xdxJrIublByiYWaN6eaE4++hDzo2jKh7mfirP2XUnQ61zNpTAzSGWJF2dApBq0iqeP9/PC7YU7+EquoOkpMn9LHer2MB6e9NJA6SyFGeWoXWIv8nsFeKK1k5p8oRGS2VK45SSZ577M5tgfru62R+kqTWj0gjtZgadkVB9wmaoIiSNKkiw8HprhBsxGIDFWW3ZIjNMvMQBQBCLctD5NX2CUrZavX8qliv+ZbQqqpgCZOY+VbzdSxawMKaTWteokkqlDZ2uJn6XstHjcjfj3eRIhZlUA2iNEmTiIEGv+TzskyzWEek78bG2ruSSwqLqmi0i+kQZlSG+79/3SudJMmLfxba4KPqbPlOq0DKh3NWbX+V6Cqv0PRc7XL9CtCoO9IJe79FVF/aiJYVdRQ38DIJdlJAnu31bvGl+zom9STg13kVWRbDa3imw+Om/vBzl7GzNnX6UPXT6KJCK02ZZtqfEYsK+qCiHprbZZxdVVq7t3geds+6CrTxwinGSS91RWb8zcbLcmO7CerwH5RnrKWXQKAv9Gb1A9dMI/HjtuQng4aHk3PhYWpra6asWGtnxuXdx4TuMwL/UnTb1JDkXFRtxsNLUdRz0D+jEcFiiDZd/ahWrXHlONR3YAgE5HF9g3USmBah20xU8IHrJ7mMvioTJ4DSPj1GuY6DEzc=
+    on:
+      tags: true
 
 cache: cargo
 before_cache:
-# Travis can't cache files that are not readable by "others"
 - chmod -R a+r $HOME/.cargo
-
 notifications:
   email:
     on_failure: never
