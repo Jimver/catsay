@@ -37,7 +37,7 @@ deploy:
     on:
       tags: true
   - provider: snap
-    snap: cat-say
+    snap: catsay*.snap
     channel: stable
     skip_cleanup: true
     on:
