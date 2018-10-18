@@ -7,6 +7,7 @@ set -ex
 main() {
     if [ $TARGET = 'snap' ]
     then
+        snapcraft
         return
     fi
 
