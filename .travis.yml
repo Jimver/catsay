@@ -36,6 +36,10 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
+  - provider: snap
+    snap: cat-say
+    channel: stable
+    skip_cleanup: true
 #  - provider: launchpad
 #    slug: "~jimver/catsay"
 #    oauth_token:

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Jimver/catsay.svg?branch=master)](https://travis-ci.org/Jimver/catsay)
 [![Build status](https://ci.appveyor.com/api/projects/status/yfam2mj2f4gqvd9i?svg=true)](https://ci.appveyor.com/project/Jimver/catsay)
-
+[![Snap Status](https://build.snapcraft.io/badge/Jimver/catsay.svg)](https://build.snapcraft.io/user/Jimver/catsay)
 
 This is a useless cli tool of a cat echoing what you say.
 
