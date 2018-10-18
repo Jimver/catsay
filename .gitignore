@@ -1,3 +1,8 @@
 /target
 **/*.rs.bk
 .idea/
+/parts/
+catsay*.snap
+prime/
+snap/
+stage/

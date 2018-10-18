@@ -1,0 +1,11 @@
+Source: catsay
+Maintainer: Jim Verheijde <jim.verheijde@hotmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Section: utils
+
+Package: catsay
+Priority: extra
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A useless CLI tool with a cat repeating what you say.

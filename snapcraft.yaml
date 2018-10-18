@@ -1,0 +1,17 @@
+name: catsay
+version: git
+summary: Useless cli tool of a cat repeating what you say
+description: |
+  catsay is a cli tool of a cat repeating what you say, it is written in Rust
+
+confinement: strict
+
+parts:
+  parity:
+    source: .
+    plugin: rust
+    build-attributes: [no-system-libraries]
+
+apps:
+  catsay:
+    command: catsay
