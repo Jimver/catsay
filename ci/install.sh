@@ -5,8 +5,8 @@ set -ex
 main() {
     if [ $TARGET = 'snap' ]
     then
-        sudo apt update
-        sudo apt install snapd
+        sudo apt-get update
+        sudo apt-get install snapd
         sudo snap install snapcraft --classic
         return
     fi
