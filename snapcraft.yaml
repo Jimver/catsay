@@ -13,5 +13,5 @@ parts:
     build-attributes: [no-system-libraries]
 
 apps:
-  catsay:
+  cat-say:
     command: catsay
