@@ -7,7 +7,7 @@ set -ex
 main() {
     if [ $TARGET = snap ]
     then
-        return
+        snapcraft
     fi
 
     cross build --target $TARGET
