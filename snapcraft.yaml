@@ -1,4 +1,4 @@
-name: catsay
+name: cat-say
 version: git
 summary: Useless cli tool of a cat repeating what you say
 description: |
