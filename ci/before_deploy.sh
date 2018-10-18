@@ -5,6 +5,13 @@
 set -ex
 
 main() {
+    if [ $TARGET = 'snap' ]
+    then
+        sudo apt update
+        sudo apt install snapd
+        return
+    fi
+
     local src=$(pwd) \
           stage=
 
@@ -16,6 +23,7 @@ main() {
             stage=$(mktemp -d -t tmp)
             ;;
     esac
+
 
     test -f Cargo.lock || cargo generate-lockfile
 

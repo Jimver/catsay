@@ -9,6 +9,7 @@ env:
   - CRATE_NAME=catsay
 matrix:
   include:
+  - env: TARGET=snap
   - env: TARGET=aarch64-unknown-linux-gnu
   - env: TARGET=i686-unknown-linux-gnu
   - env: TARGET=x86_64-unknown-linux-gnu
@@ -41,6 +42,7 @@ deploy:
     channel: stable
     skip_cleanup: true
     on:
+      condition: $TARGET = snap
       tags: true
 #  - provider: launchpad
 #    slug: "~jimver/catsay"

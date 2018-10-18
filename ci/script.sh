@@ -5,6 +5,11 @@
 set -ex
 
 main() {
+    if [ $TARGET = snap ]
+    then
+        return
+    fi
+
     cross build --target $TARGET
     cross build --target $TARGET --release
 
