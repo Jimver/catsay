@@ -14,4 +14,4 @@ parts:
 
 apps:
   cat-say:
-    command: catsay
+    command: cat-say

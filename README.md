@@ -13,7 +13,7 @@ If you have `snap` installed (Ubuntu 16.04 and up) you can simply install using:
 
 And run it like:
 
-`catsay hello`
+`cat-say hello`
 
 If you don't have snap you can just get the latest binaries [here](https://github.com/Jimver/catsay/releases/latest)
 
