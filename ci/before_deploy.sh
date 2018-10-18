@@ -7,7 +7,7 @@ set -ex
 main() {
     if [ $TARGET = 'snap' ]
     then
-        docker run -v $(pwd):$(pwd) -w $(pwd) snapcore/snapcraft sh -c "apt update && snapcraft"
+        docker run -v $(pwd):$(pwd) -w $(pwd) snapcore/snapcraft sh -c "apt-get update && snapcraft"
         return
     fi
 
