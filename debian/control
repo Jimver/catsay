@@ -1,10 +1,10 @@
-Source: catsay
+Source: cat-say
 Maintainer: Jim Verheijde <jim.verheijde@hotmail.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 Section: utils
 
-Package: catsay
+Package: cat-say
 Priority: extra
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}

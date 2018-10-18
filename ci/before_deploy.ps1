@@ -12,7 +12,7 @@ $RELEASE_NAME ="$SRC_DIR\$($Env:CRATE_NAME)-$($Env:APPVEYOR_REPO_TAG_NAME)-$($En
 
 $ZIP = "$RELEASE_NAME.zip"
 
-$EXE = "$SRC_DIR\target\$($Env:TARGET)\release\catsay.exe"
+$EXE = "$SRC_DIR\target\$($Env:TARGET)\release\cat-say.exe"
 
 Copy-Item "$EXE" "$RELEASE_NAME.exe"
 

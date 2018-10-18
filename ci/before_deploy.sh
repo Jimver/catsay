@@ -26,13 +26,13 @@ main() {
 
     test -f Cargo.lock || cargo generate-lockfile
 
-    cross rustc --bin catsay --target $TARGET --release -- -C lto
+    cross rustc --bin cat-say --target $TARGET --release -- -C lto
 
     if [ $TARGET = 'x86_64-pc-windows-gnu' ]
     then
-        cp target/$TARGET/release/catsay.exe $stage/
+        cp target/$TARGET/release/cat-say.exe $stage/
     else
-        cp target/$TARGET/release/catsay $stage/
+        cp target/$TARGET/release/cat-say $stage/
     fi
 
 

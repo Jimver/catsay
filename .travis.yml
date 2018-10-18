@@ -5,7 +5,7 @@ services: docker
 sudo: required
 env:
   global:
-  - CRATE_NAME=catsay
+  - CRATE_NAME=cat-say
 matrix:
   include:
   - env: TARGET=snap
@@ -37,7 +37,7 @@ deploy:
     on:
       tags: true
   - provider: snap
-    snap: catsay*.snap
+    snap: cat-say*.snap
     channel: stable
     skip_cleanup: true
     on:

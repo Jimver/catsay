@@ -2,7 +2,7 @@ name: cat-say
 version: git
 summary: Useless cli tool of a cat repeating what you say
 description: |
-  catsay is a cli tool of a cat repeating what you say, it is written in Rust
+  cat-say is a cli tool of a cat repeating what you say, it is written in Rust
 
 confinement: strict
 
