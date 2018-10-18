@@ -7,7 +7,7 @@ description: |
 confinement: strict
 
 parts:
-  catsay:
+  cat-say:
     source: .
     plugin: rust
     build-attributes: [no-system-libraries]

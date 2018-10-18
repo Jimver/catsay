@@ -1,5 +1,5 @@
 [package]
-name = "catsay"
+name = "cat-say"
 version = "0.1.0"
 authors = ["Jim Verheijde <jim.verheijde@gmail.com>"]
 
