@@ -8,6 +8,7 @@ main() {
     if [ $TARGET = snap ]
     then
         snapcraft
+        return
     fi
 
     cross build --target $TARGET
