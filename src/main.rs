@@ -93,7 +93,7 @@ fn to_text_box(lines: Vec<&str>, width: usize) -> String {
         // Process middle lines
         let middle_lines = &lines[1..lines.len() - 1];
         let mut between: String = String::from("");
-        if middle_lines.len() > 1 {
+        if middle_lines.len() >= 1 {
             for middle_line in middle_lines {
                 between.push_str(&format!("| {: <1$}|\n", middle_line, width + 1));
             }
