@@ -44,11 +44,11 @@ fn wrap_lines(message: &str, width: usize) -> Vec<&str> {
             cur_pos -= 1;
         }
 
-        // If no space was found just split at width length
         if cur_pos == 0 {
+            // If no space was found just split at width length
             cur_pos = width;
-        } // Else increment index to remove space
-        else {
+        } else {
+            // Else increment index to remove space
             cur_pos += 1;
         }
 
@@ -58,7 +58,7 @@ fn wrap_lines(message: &str, width: usize) -> Vec<&str> {
         lines.push(&first);
 
         // Recurse into the rest of the message
-        let rest= wrap_lines(&last, width);
+        let rest = wrap_lines(&last, width);
 
         // Add recursed lines the line we already have
         lines.extend(&rest);
@@ -69,45 +69,51 @@ fn wrap_lines(message: &str, width: usize) -> Vec<&str> {
 
 /// Converts an array of lines into a textbox with edges
 fn to_text_box(lines: Vec<&str>, width: usize) -> String {
-
-    let mut res= String::from("");
-    // In case there is no lines
-    if lines.len() == 0 {
-        res = String::from(" __ \n<  >\n -- \n");
-    } // If there is one line
-    else if lines.len() == 1 {
-        // Top and bottom borders
-        let top_text_box = format!(" {:_^1$} ", "", lines[0].len() + 2);
-        let bottom_text_box = format!(" {:-^1$} ", "", lines[0].len() + 2);
-        res = format!("{top}\n< {line} >\n{bottom}", top = top_text_box, line = lines[0], bottom = bottom_text_box);
-    } // If there is 2 or more lines
-    else if lines.len() >= 2 {
-        // Top and bottom borders
-        let top_text_box = format!(" {:_^1$}", "", width + 2);
-        let bottom_text_box = format!(" {:-^1$}", "", width + 2);
-
-        // Top and bottom text line
-        let beneath_top = format!("/ {: <1$}\\", &lines[0], width + 1);
-        let above_bottom = format!("\\ {: <1$}/", &lines[lines.len() - 1], width + 1);
-
-        // Process middle lines
-        let middle_lines = &lines[1..lines.len() - 1];
-        let mut between: String = String::from("");
-        if middle_lines.len() >= 1 {
-            for middle_line in middle_lines {
-                between.push_str(&format!("| {: <1$}|\n", middle_line, width + 1));
-            }
+    let mut res: String;
+    match lines.len() {
+        0 => {
+            // In case there is no lines
+            res = " __ \n<  >\n -- \n".to_string();
         }
-        res = format!("{top}\n{beneath}\n{middle}{above}\n{bottom}", top=top_text_box, beneath=beneath_top, middle=between, above=above_bottom, bottom=bottom_text_box);
+        1 => {
+            // If there is one line
+            // Top and bottom borders
+            let top_text_box = format!(" {:_^1$} ", "", lines[0].len() + 2).into_boxed_str();
+            let bottom_text_box = format!(" {:-^1$} ", "", lines[0].len() + 2).into_boxed_str();
+            res = format!("{top}\n< {line} >\n{bottom}",
+                          top = top_text_box, line = lines[0], bottom = bottom_text_box);
+        }
+        _ => {
+            // If there is 2 or more lines
+            // Top and bottom borders
+            let top_text_box = format!(" {:_^1$}", "", width + 2).into_boxed_str();
+            let bottom_text_box = format!(" {:-^1$}", "", width + 2).into_boxed_str();
+
+            // Top and bottom text line
+            let beneath_top = format!("/ {: <1$}\\", &lines[0], width + 1);
+            let above_bottom = format!("\\ {: <1$}/", &lines[lines.len() - 1], width + 1);
+
+            // Process middle lines
+            let middle_lines = &lines[1..lines.len() - 1];
+            let mut between: String = String::from("");
+            if middle_lines.len() >= 1 {
+                for middle_line in middle_lines {
+                    between.push_str(&format!("| {: <1$}|\n", middle_line, width + 1));
+                }
+            }
+            res = format!("{top}\n{beneath}\n{middle}{above}\n{bottom}",
+                          top = top_text_box, beneath = beneath_top, middle = between,
+                          above = above_bottom, bottom = bottom_text_box);
+        }
     }
-    return res;
+    return res.to_string();
 }
 
 /// Print the message with the cat saying it
 fn catsays(message: &str) {
     let lines = wrap_lines(message, LINE_WIDTH);
     let text_box = to_text_box(lines, LINE_WIDTH);
-    println!("{text}\n{cat}", text=text_box, cat=CAT_ASCII_ART);
+    println!("{text}\n{cat}", text = text_box, cat = CAT_ASCII_ART);
 }
 
 /// Processes the argument input
