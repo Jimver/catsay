@@ -69,7 +69,7 @@ fn wrap_lines(message: &str, width: usize) -> Vec<&str> {
 
 /// Converts an array of lines into a textbox with edges
 fn to_text_box(lines: Vec<&str>, width: usize) -> String {
-    let mut res: String;
+    let res: String;
     match lines.len() {
         0 => {
             // In case there is no lines

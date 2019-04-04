@@ -6,3 +6,5 @@ catsay*.snap
 prime/
 snap/
 stage/
+/pkg/
+/catsay-*.pkg.tar.xz
