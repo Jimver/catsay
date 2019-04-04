@@ -1,6 +1,4 @@
 [package]
 name = "catsay"
 version = "0.1.0"
-authors = ["Jim Verheijde <jim.verheijde@gmail.com>"]
-
-[dependencies]
+authors = ["Jim Verheijde <jimver1@hotmail.com>"]
