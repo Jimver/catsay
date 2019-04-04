@@ -15,5 +15,5 @@ build() {
 package() {
     echo "$pkgdir"
     mkdir -p "$pkgdir/usr/bin/"
-    cp "$startdir/target/release/catsay" "$pkgdir/usr/bin/"
+    cp "$startdir/target/release/cat-say" "$pkgdir/usr/bin/catsay"
 }
