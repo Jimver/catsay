@@ -34,10 +34,10 @@ fn main() -> Result<(), std::io::Error> {
 /// Wraps the message into lines of certain width using a greedy algorithm
 fn wrap_lines(message: &str, width: usize) -> Vec<&str> {
     if message.len() <= width {
-        return vec![message];
+        vec![message]
     } else {
-        let mut lines: Vec<&str> = vec![];
-        let mut cur_pos: usize = width;
+        let mut lines = Vec::new();
+        let mut cur_pos = width;
 
         // Search for first whitespace from width to the left
         while message.chars().nth(cur_pos).unwrap() != ' ' && cur_pos > 0 {
@@ -55,33 +55,36 @@ fn wrap_lines(message: &str, width: usize) -> Vec<&str> {
         // Push the line into the lines array
         let (first, last) = message.split_at(cur_pos);
 
-        lines.push(&first);
+        lines.push(first);
 
         // Recurse into the rest of the message
-        let rest = wrap_lines(&last, width);
+        let rest = wrap_lines(last, width);
 
         // Add recursed lines the line we already have
         lines.extend(&rest);
 
-        return lines;
+        lines
     }
 }
 
 /// Converts an array of lines into a textbox with edges
 fn to_text_box(lines: Vec<&str>, width: usize) -> String {
-    let res: String;
     match lines.len() {
         0 => {
             // In case there is no lines
-            res = " __ \n<  >\n -- \n".to_string();
+            " __ \n<  >\n -- \n".to_string()
         }
         1 => {
             // If there is one line
             // Top and bottom borders
             let top_text_box = format!(" {:_^1$} ", "", lines[0].len() + 2).into_boxed_str();
             let bottom_text_box = format!(" {:-^1$} ", "", lines[0].len() + 2).into_boxed_str();
-            res = format!("{top}\n< {line} >\n{bottom}",
-                          top = top_text_box, line = lines[0], bottom = bottom_text_box);
+            format!(
+                "{top}\n< {line} >\n{bottom}",
+                top = top_text_box,
+                line = lines[0],
+                bottom = bottom_text_box
+            )
         }
         _ => {
             // If there is 2 or more lines
@@ -96,17 +99,21 @@ fn to_text_box(lines: Vec<&str>, width: usize) -> String {
             // Process middle lines
             let middle_lines = &lines[1..lines.len() - 1];
             let mut between: String = String::from("");
-            if middle_lines.len() >= 1 {
+            if !middle_lines.is_empty() {
                 for middle_line in middle_lines {
                     between.push_str(&format!("| {: <1$}|\n", middle_line, width + 1));
                 }
             }
-            res = format!("{top}\n{beneath}\n{middle}{above}\n{bottom}",
-                          top = top_text_box, beneath = beneath_top, middle = between,
-                          above = above_bottom, bottom = bottom_text_box);
+            format!(
+                "{top}\n{beneath}\n{middle}{above}\n{bottom}",
+                top = top_text_box,
+                beneath = beneath_top,
+                middle = between,
+                above = above_bottom,
+                bottom = bottom_text_box
+            )
         }
     }
-    return res.to_string();
 }
 
 /// Print the message with the cat saying it
@@ -132,6 +139,6 @@ fn process_stdin() -> io::Result<()> {
     let mut handle = stdin.lock();
 
     handle.read_to_string(&mut buffer)?;
-    catsays(&buffer.trim());
+    catsays(buffer.trim());
     Ok(())
 }
